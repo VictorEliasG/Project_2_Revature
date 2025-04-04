@@ -1,6 +1,6 @@
 import { Loan } from '../models/Loan';
 
-const API_BASE_URL = 'http://localhost:7070';
+const API_BASE_URL = 'http://52.87.229.131:7070'; //http://localhost:7070
 
 const getToken = () => localStorage.getItem('token');
 
@@ -84,5 +84,3 @@ export const rejectLoan = async (id: number, loan: Loan) => {
   });
   return response.json();
 };
-
-
