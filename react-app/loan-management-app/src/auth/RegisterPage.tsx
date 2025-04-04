@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../services/authService';
 
 export const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+
+  const navigate = useNavigate();
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -14,7 +17,7 @@ export const RegisterPage = () => {
           username: username,
           passwordHash: password,
           userType: { id: 2 },
-        }
+        },
       });
       if (!response.ok) throw new Error('Registration failed');
       setMessage('Registration successful!');
@@ -63,8 +66,6 @@ export const RegisterPage = () => {
           />
         </div>
 
-
-
         <button type="submit" className="submit-button">
           Register
         </button>
@@ -82,7 +83,14 @@ export const RegisterPage = () => {
 
       <p className="mt-10 text-center text-sm/6 text-gray-500">
         Already have an account?{' '}
-        <a href="/" className="cta-link">
+        <a
+          href="#"
+          className="cta-link"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate('/');
+          }}
+        >
           Sign in
         </a>
       </p>

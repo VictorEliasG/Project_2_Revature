@@ -14,7 +14,7 @@ export const LoginPage = () => {
       const response = await loginUser({ username: username, password });
       if (!response.ok) throw new Error('Login failed');
 
-      const data = (await response.json()) as { token: string, user: User };
+      const data = (await response.json()) as { token: string; user: User };
       const token = data.token;
       const user = data.user;
 
@@ -82,7 +82,14 @@ export const LoginPage = () => {
         </button>
         <p className="mt-10 text-center text-sm/6 text-gray-500">
           Need an account? Register now.{' '}
-          <a href="/register" className="cta-link">
+          <a
+            href="#"
+            className="cta-link"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate('/register');
+            }}
+          >
             Sign up
           </a>
         </p>
