@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        BUILD_NUMBER = "1";
         DOCKER_IMAGE = "victoreliasg/project_1_revature:v${BUILD_NUMBER}"
         EC2_HOST = "52.87.229.131"
         EC2_USER = "ec2-user"
