@@ -16,7 +16,7 @@ pipeline {
         EC2_USER = "ec2-user"
         SSH_KEY = credentials('jenkins-ec2-key')
         AWS_REGION = "us-east-1"
-        S3_BUCKET = "my-frontend-bucket"
+        S3_BUCKET = "my-react-loan-app-bucket"
     }
 
     stages {
