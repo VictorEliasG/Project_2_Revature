@@ -28,7 +28,7 @@ pipeline {
 
         stage('Build Frontend') {
             steps {
-                dir('react/app') {
+                dir('loan-react-app') {
                     sh 'npm install'
                     sh 'npm run build'
                 }
