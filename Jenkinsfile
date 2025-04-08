@@ -49,11 +49,20 @@ pipeline {
         stage('Inject application.properties') {
             steps {
                 withCredentials([file(credentialsId: 'spring-application-properties', variable: 'APP_PROPS')]) {
-                    sh 'mkdir -p src/main/resources'
-                    sh 'cp $APP_PROPS src/main/resources/application.properties'
+                    script {
+                        // Ensure the target directory exists and is writable
+                        sh 'mkdir -p src/main/resources'
+                        // Adjust permissions; note that 777 is broad — adjust as needed for your security requirements
+                        sh 'chmod -R 777 src/main/resources'
+                        // Now copy the file
+                        sh 'cp $APP_PROPS src/main/resources/application.properties'
+                    }
                 }
             }
         }
+
+        
+
 
         stage('Build Backend (Maven)') {
             steps {
