@@ -39,7 +39,7 @@ pipeline {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-s3-credentials']]) {
                     sh """
-                        aws s3 sync loan-react-app/dist s3://${S3_BUCKET} --region ${AWS_REGION} --delete
+                        aws s3 sync loan-react-app/dist/ s3://${S3_BUCKET}/ --region ${AWS_REGION} --delete
                         aws s3 cp s3://${S3_BUCKET}/index.html s3://${S3_BUCKET}/index.html --cache-control no-cache --metadata-directive REPLACE
                     """
                 }
