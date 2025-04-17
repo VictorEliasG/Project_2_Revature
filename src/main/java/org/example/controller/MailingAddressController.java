@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.example.Service.MailingAddressService;
@@ -35,7 +36,7 @@ public class MailingAddressController {
     public ResponseEntity<?> getAllMailingAddresses(HttpServletRequest request) {
         User sessionUser = (User) request.getAttribute("user");
 
-        if(sessionUser.getUserType().getId() != 1 ) {
+        if (sessionUser.getUserType().getId() != 1) {
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
@@ -47,7 +48,7 @@ public class MailingAddressController {
     public ResponseEntity<MailingAddress> getMailingAddressById(@PathVariable Long id, HttpServletRequest request) {
         User sessionUser = (User) request.getAttribute("user");
 
-        if(sessionUser.getUserType().getId() != 1 && sessionUser.getId() != id) {
+        if (sessionUser.getUserType().getId() != 1 && !Objects.equals(sessionUser.getId(), id)) {
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
@@ -66,11 +67,12 @@ public class MailingAddressController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MailingAddress> updateMailingAddress(@PathVariable Long id, @RequestBody MailingAddress mailingAddress, HttpServletRequest request) {
+    public ResponseEntity<MailingAddress> updateMailingAddress(@PathVariable Long id,
+            @RequestBody MailingAddress mailingAddress, HttpServletRequest request) {
         // Only manager and user itself can update user
         User sessionUser = (User) request.getAttribute("user");
-        if(sessionUser.getUserType().getId() != 1 && sessionUser.getId() != id) {
-             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        if (sessionUser.getUserType().getId() != 1 && !Objects.equals(sessionUser.getId(), id)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
 
         Optional<MailingAddress> updatedAddress = mailingAddressService.updateAddress(id, mailingAddress);
@@ -82,8 +84,8 @@ public class MailingAddressController {
     public ResponseEntity<Void> deleteMailingAddress(@PathVariable Long id, HttpServletRequest request) {
         User sessionUser = (User) request.getAttribute("user");
 
-        if(sessionUser.getUserType().getId() != 1 && sessionUser.getId() != id) {
-               return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        if (sessionUser.getUserType().getId() != 1 && !Objects.equals(sessionUser.getId(), id)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
 
         boolean isDeleted = mailingAddressService.deleteAddress(id);

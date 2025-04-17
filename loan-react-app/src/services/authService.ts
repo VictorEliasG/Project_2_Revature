@@ -1,7 +1,8 @@
 import { AuthRequest } from '../models/AuthRequest';
 import { UserProfile } from '../models/UserProfile';
 
-const API_BASE_URL = 'http://52.87.229.131:7070'; //http://localhost:7070
+// const API_BASE_URL = 'http://52.87.229.131:7070';
+const API_BASE_URL = 'http://localhost:7070';
 
 export const registerUser = async (userProfile: UserProfile) => {
   return fetch(`${API_BASE_URL}/api/auth/register`, {

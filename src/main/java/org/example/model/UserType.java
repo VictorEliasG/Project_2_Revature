@@ -6,8 +6,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data // Generates getters, setters, toString, equals, hashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "user_types", schema = "loans")
 public class UserType {
     @Id
@@ -17,31 +23,4 @@ public class UserType {
 
     @Column(name = "user_type", length = 45, unique = true)
     private String userType;
-
-    public UserType() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
-    @Override
-    public String toString() {
-        return "UserType{" +
-                "id=" + id +
-                ", userType='" + userType + '\'' +
-                '}';
-    }
 }

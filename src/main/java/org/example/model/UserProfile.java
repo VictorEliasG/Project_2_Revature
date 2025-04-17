@@ -16,8 +16,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data // Generates getters, setters, toString, equals, hashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "user_profiles", schema = "loans")
 public class UserProfile {
 
@@ -52,72 +58,6 @@ public class UserProfile {
     @JsonIgnore
     @OneToMany(mappedBy = "userProfile", cascade = CascadeType.ALL)
     private List<LoanApplication> loanApplications = new ArrayList<>();
-
-    public UserProfile() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public MailingAddress getMailingAddress() {
-        return mailingAddress;
-    }
-
-    public void setMailingAddress(MailingAddress mailingAddress) {
-        this.mailingAddress = mailingAddress;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Integer getCreditScore() {
-        return creditScore;
-    }
-
-    public void setCreditScore(Integer creditScore) {
-        this.creditScore = creditScore;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
 
     public List<LoanApplication> getLoanApplications() {
         return loanApplications;

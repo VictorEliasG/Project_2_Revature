@@ -12,3 +12,4 @@ EXPOSE 7070
 
 # 5. Run the application
 CMD ["java", "-jar", "app.jar"]
+

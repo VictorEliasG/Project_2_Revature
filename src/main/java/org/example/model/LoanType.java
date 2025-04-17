@@ -5,8 +5,14 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data // Generates getters, setters, toString, equals, hashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "loan_type", schema = "loans")
 public class LoanType {
 
@@ -30,30 +36,4 @@ public class LoanType {
         this.loanApplications = loanApplications;
     }
 
-    public LoanType() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getLoanType() {
-        return loanType;
-    }
-
-    public void setLoanType(String loanType) {
-        this.loanType = loanType;
-    }
-
-    @Override
-    public String toString() {
-        return "LoanType{" +
-                "id=" + id +
-                ", loanType='" + loanType + '\'' +
-                '}';
-    }
 }

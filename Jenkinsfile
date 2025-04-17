@@ -7,6 +7,7 @@
    Copies everything needed (including Dockerfile and backend code) to the EC2 instance
    Remotely builds the Docker image and runs the container
 */
+
 pipeline {
     agent any
 
@@ -61,9 +62,6 @@ pipeline {
             }
         }
 
-        
-
-
         stage('Build Backend (Maven)') {
             steps {
                 sh 'mvn clean package -DskipTests'
@@ -91,7 +89,9 @@ pipeline {
         stage('Deploy to AWS EC2') {
             steps {
                 sshagent(['jenkins-ec2-key']) {
-                    sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} \"docker pull ${DOCKER_IMAGE} && docker stop project-backend || true && docker rm project-backend || true && docker run -d -p 8080:8080 --name project-backend ${DOCKER_IMAGE}\""
+                    sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} \"docker pull ${DOCKER_IMAGE} 
+                    && docker stop project-backend || true && docker rm project-backend || true && docker run -d 
+                    -p 8080:8080 --name project-backend ${DOCKER_IMAGE}\""
                 }
             }
         }

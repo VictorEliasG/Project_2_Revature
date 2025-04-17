@@ -11,9 +11,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data // Generates getters, setters, toString, equals, hashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users", schema = "loans")
 public class User {
 
@@ -36,40 +41,6 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserProfile userProfile;
 
-    public User() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
-    public UserType getUserType() {
-        return userType;
-    }
-
-    public void setUserType(UserType userType) {
-        this.userType = userType;
-    }
-
     public UserProfile getUserProfile() {
         return userProfile;
     }
@@ -78,12 +49,4 @@ public class User {
         this.userProfile = userProfile;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", userType=" + userType +
-                '}';
-    }
 }
