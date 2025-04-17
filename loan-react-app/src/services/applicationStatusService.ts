@@ -7,7 +7,7 @@ const getToken = () => localStorage.getItem('token');
 
 export const getAllApplicationStatuses = async () => {
   const token = getToken();
-  const response = await fetch(`${API_BASE_URL}/api/application_statuses`, {
+  const response = await fetch(`${API_BASE_URL}/api/application-statuses`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -21,7 +21,7 @@ export const getAllApplicationStatuses = async () => {
 export const getApplicationStatusById = async (id: number) => {
   const token = getToken();
   const response = await fetch(
-    `${API_BASE_URL}/api/application_statuses/${id}`,
+    `${API_BASE_URL}/api/application-statuses/${id}`,
     {
       method: 'GET',
       headers: {
@@ -36,7 +36,7 @@ export const getApplicationStatusById = async (id: number) => {
 
 export const createApplicationStatus = async (status: ApplicationStatus) => {
   const token = getToken();
-  const response = await fetch(`${API_BASE_URL}/api/application_statuses`, {
+  const response = await fetch(`${API_BASE_URL}/api/application-statuses`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -54,7 +54,7 @@ export const updateApplicationStatus = async (
 ) => {
   const token = getToken();
   const response = await fetch(
-    `${API_BASE_URL}/api/application_statuses/${id}`,
+    `${API_BASE_URL}/api/application-statuses/${id}`,
     {
       method: 'PUT',
       headers: {
@@ -71,7 +71,7 @@ export const updateApplicationStatus = async (
 export const deleteApplicationStatus = async (id: number) => {
   const token = getToken();
   const response = await fetch(
-    `${API_BASE_URL}/api/application_statuses/${id}`,
+    `${API_BASE_URL}/api/application-statuses/${id}`,
     {
       method: 'DELETE',
       headers: {
